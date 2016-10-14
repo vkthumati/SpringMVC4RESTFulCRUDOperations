@@ -2,7 +2,9 @@
 /.gradle/
 /bin/
 .project
-.classpath
+/.classpath
 gradle.properties
 **.*iml
 .idea/
+target/
+/.settings
