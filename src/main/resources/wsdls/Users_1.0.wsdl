@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:sch="http://crud.ws.com/operations/types" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://crud.ws.com/operations/types" targetNamespace="http://crud.ws.com/operations/types">
+	<wsdl:types>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			elementFormDefault="qualified" targetNamespace="http://crud.ws.com/operations/types">
+			<xs:element name="getUserRequest">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="id" type="xs:long" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="getUserResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="user" type="tns:user" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="getAllUsersRequest">
+				<xs:complexType>
+					<xs:sequence>
+						<!-- <xs:element name="request" nillable="true"/> -->
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="getAllUsersResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" name="users" type="tns:user" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="createUserRequest">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="user" type="tns:user" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="createUserResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<!-- <xs:element name="response" nillable="true"/> -->
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="updateUserRequest">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="user" type="tns:user" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="updateUserResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<!-- <xs:element name="response" nillable="true"/> -->
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="deleteUserRequest">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="id" type="xs:long" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="deleteUserResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<!-- <xs:element name="response" nillable="true"/> -->
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="deleteAllUsersRequest">
+				<xs:complexType>
+					<xs:sequence>
+						<!-- <xs:element name="id" type="xs:long"/> -->
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="deleteAllUsersResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<!-- <xs:element name="response" nillable="true"/> -->
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="userExistRequest">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="id" type="xs:long" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="userExistResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="isUserExist" type="xs:boolean" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:complexType name="user">
+				<xs:sequence>
+					<xs:element name="id" type="xs:long" />
+					<xs:element name="name" type="xs:string" />
+					<xs:element name="age" type="xs:int" />
+					<xs:element name="salary" type="xs:double" />
+				</xs:sequence>
+			</xs:complexType>
+
+			<xs:complexType name="serviceFault">
+				<xs:sequence>
+					<xs:element name="messagesType" nillable="true"
+						type="tns:messagesType" />
+				</xs:sequence>
+			</xs:complexType>
+
+			<xs:complexType name="messagesType">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0"
+						name="messageType" nillable="true" type="tns:messageType" />
+				</xs:sequence>
+			</xs:complexType>
+
+			<xs:complexType name="messageType">
+				<xs:sequence>
+					<xs:element name="code" type="xs:string" />
+					<xs:element minOccurs="0" name="text" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+
+			<xs:element name="serviceFault" type="tns:serviceFault" />
+
+			<xs:element name="requestHeader" type="tns:requestHeaderType" />
+
+			<xs:complexType name="requestHeaderType">
+				<xs:sequence>
+					<xs:element name="timestamp" type="xs:dateTime" />
+					<xs:element name="sourceSystemId" type="xs:token" />
+					<xs:element minOccurs="0" name="sourceSystemUserId"
+						type="xs:token" />
+					<xs:element name="sourceServerId" type="xs:token" />
+					<xs:element name="trackingId" type="xs:token" />
+					<xs:element minOccurs="0" name="sessionId" type="xs:token" />
+					<xs:element minOccurs="0" name="environmentId" type="xs:token" />
+				</xs:sequence>
+			</xs:complexType>
+
+			<xs:element name="responseHeader" type="tns:responseHeaderType" />
+
+			<xs:complexType name="responseHeaderType">
+				<xs:sequence>
+					<xs:element name="timestamp" type="xs:dateTime" />
+					<xs:element name="trackingId" type="xs:token" />
+				</xs:sequence>
+			</xs:complexType>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="updateUserRequest">
+		<wsdl:part element="tns:updateUserRequest" name="updateUserRequest"/>
+	</wsdl:message>
+	<wsdl:message name="updateUserResponse">
+		<wsdl:part element="tns:updateUserResponse" name="updateUserResponse"/>
+	</wsdl:message>
+	<wsdl:message name="deleteUserRequest">
+		<wsdl:part element="tns:deleteUserRequest" name="deleteUserRequest"/>
+	</wsdl:message>	
+	<wsdl:message name="deleteUserResponse">
+		<wsdl:part element="tns:deleteUserResponse" name="deleteUserResponse"/>
+	</wsdl:message>
+	<wsdl:message name="userExistRequest">
+		<wsdl:part element="tns:userExistRequest" name="userExistRequest"/>
+	</wsdl:message>
+	<wsdl:message name="userExistResponse">
+		<wsdl:part element="tns:userExistResponse" name="userExistResponse"/>
+	</wsdl:message>
+	<wsdl:message name="deleteAllUsersRequest">
+		<wsdl:part element="tns:deleteAllUsersRequest" name="deleteAllUsersRequest"/>
+	</wsdl:message>	
+	<wsdl:message name="deleteAllUsersResponse">
+		<wsdl:part element="tns:deleteAllUsersResponse" name="deleteAllUsersResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getAllUsersRequest">
+		<wsdl:part element="tns:getAllUsersRequest" name="getAllUsersRequest"/>
+	</wsdl:message>
+	<wsdl:message name="getAllUsersResponse">
+		<wsdl:part element="tns:getAllUsersResponse" name="getAllUsersResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getUserRequest">
+		<wsdl:part element="tns:getUserRequest" name="getUserRequest"/>
+	</wsdl:message>
+	<wsdl:message name="getUserResponse">
+		<wsdl:part element="tns:getUserResponse" name="getUserResponse"/>
+	</wsdl:message>
+	<wsdl:message name="createUserRequest">
+		<wsdl:part element="tns:createUserRequest" name="createUserRequest"/>
+	</wsdl:message>	
+	<wsdl:message name="createUserResponse">
+		<wsdl:part element="tns:createUserResponse" name="createUserResponse"/>
+	</wsdl:message>
+	<wsdl:message name="serviceFault">
+		<wsdl:part element="tns:serviceFault" name="serviceFault"/>
+	</wsdl:message>
+	<wsdl:message name="requestHeader">
+		<wsdl:part element="tns:requestHeader" name="requestHeader"/>
+	</wsdl:message>
+	<wsdl:message name="responseHeader">
+		<wsdl:part element="tns:responseHeader" name="responseHeader"/>
+	</wsdl:message>
+	<wsdl:portType name="UsersPort">
+		<wsdl:operation name="updateUser">
+			<wsdl:input message="tns:updateUserRequest" name="updateUserRequest"/>
+			<wsdl:output message="tns:updateUserResponse" name="updateUserResponse"/>
+			<wsdl:fault message="tns:serviceFault" name="serviceFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="deleteUser">
+			<wsdl:input message="tns:deleteUserRequest" name="deleteUserRequest"/>
+			<wsdl:output message="tns:deleteUserResponse" name="deleteUserResponse"/>
+			<wsdl:fault message="tns:serviceFault" name="serviceFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="userExist">
+			<wsdl:input message="tns:userExistRequest" name="userExistRequest"/>
+			<wsdl:output message="tns:userExistResponse" name="userExistResponse"/>
+			<wsdl:fault message="tns:serviceFault" name="serviceFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="deleteAllUsers">
+			<wsdl:input message="tns:deleteAllUsersRequest" name="deleteAllUsersRequest"/>
+			<wsdl:output message="tns:deleteAllUsersResponse" name="deleteAllUsersResponse"/>
+			<wsdl:fault message="tns:serviceFault" name="serviceFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="getAllUsers">
+			<wsdl:input message="tns:getAllUsersRequest" name="getAllUsersRequest"/>
+			<wsdl:output message="tns:getAllUsersResponse" name="getAllUsersResponse"/>
+			<wsdl:fault message="tns:serviceFault" name="serviceFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="getUser">
+			<wsdl:input message="tns:getUserRequest" name="getUserRequest"/>
+			<wsdl:output message="tns:getUserResponse" name="getUserResponse"/>
+			<wsdl:fault message="tns:serviceFault" name="serviceFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="createUser">
+			<wsdl:input message="tns:createUserRequest" name="createUserRequest"/>
+			<wsdl:output message="tns:createUserResponse" name="createUserResponse"/>
+			<wsdl:fault message="tns:serviceFault" name="serviceFault"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="UsersPortSoap11" type="tns:UsersPort">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="updateUser">
+			<soap:operation soapAction="" />
+			<wsdl:input name="updateUserRequest">
+				<soap:header message="tns:requestHeader" part="requestHeader" use="literal"/>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="updateUserResponse">
+				<soap:header message="tns:responseHeader" part="responseHeader" use="literal"/>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="deleteUser">
+			<soap:operation soapAction="" />
+			<wsdl:input name="deleteUserRequest">
+				<soap:header message="tns:requestHeader" part="requestHeader" use="literal"/>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="deleteUserResponse">
+				<soap:header message="tns:responseHeader" part="responseHeader" use="literal"/>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="userExist">
+			<soap:operation soapAction="" />
+			<wsdl:input name="userExistRequest">
+				<soap:header message="tns:requestHeader" part="requestHeader" use="literal"/>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="userExistResponse">
+				<soap:header message="tns:responseHeader" part="responseHeader" use="literal"/>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="deleteAllUsers">
+			<soap:operation soapAction="" />
+			<wsdl:input name="deleteAllUsersRequest">
+				<soap:header message="tns:requestHeader" part="requestHeader" use="literal"/>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="deleteAllUsersResponse">
+				<soap:header message="tns:responseHeader" part="responseHeader" use="literal"/>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getAllUsers">
+			<soap:operation soapAction="" />
+			<wsdl:input name="getAllUsersRequest">
+				<soap:header message="tns:requestHeader" part="requestHeader" use="literal"/>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getAllUsersResponse">
+				<soap:header message="tns:responseHeader" part="responseHeader" use="literal"/>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getUser">
+			<soap:operation soapAction="" />
+			<wsdl:input name="getUserRequest">
+				<soap:header message="tns:requestHeader" part="requestHeader" use="literal"/>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getUserResponse">
+				<soap:header message="tns:responseHeader" part="responseHeader" use="literal"/>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="createUser">
+			<soap:operation soapAction="" />
+			<wsdl:input name="createUserRequest">
+				<soap:header message="tns:requestHeader" part="requestHeader" use="literal"/>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="createUserResponse">
+				<soap:header message="tns:responseHeader" part="responseHeader" use="literal"/>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="UsersPortService">
+		<wsdl:port binding="tns:UsersPortSoap11" name="UsersPortSoap11">
+			<soap:address location="http://localhost:8080/SoapCrudOperations/1.0" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

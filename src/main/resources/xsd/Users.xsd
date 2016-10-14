@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://crud.ws.com/operations/types" targetNamespace="http://crud.ws.com/operations/types"
+	elementFormDefault="qualified">
+	<xs:element name="getUserRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="id" type="xs:long" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="getUserResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="user" type="tns:user" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="getAllUsersRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<!-- <xs:element name="request" nillable="true"/> -->
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="getAllUsersResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="users" maxOccurs="unbounded" type="tns:user" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="createUserRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="user" type="tns:user" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="createUserResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<!-- <xs:element name="response" nillable="true"/> -->
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="updateUserRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="user" type="tns:user" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="updateUserResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<!-- <xs:element name="response" nillable="true"/> -->
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="deleteUserRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="id" type="xs:long" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="deleteUserResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<!-- <xs:element name="response" nillable="true"/> -->
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="deleteAllUsersRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<!-- <xs:element name="id" type="xs:long"/> -->
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="deleteAllUsersResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<!-- <xs:element name="response" nillable="true"/> -->
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="userExistRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="id" type="xs:long" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="userExistResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="isUserExist" type="xs:boolean" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="user">
+		<xs:sequence>
+			<xs:element name="id" type="xs:long" />
+			<xs:element name="name" type="xs:string" />
+			<xs:element name="age" type="xs:int" />
+			<xs:element name="salary" type="xs:double" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="serviceFault">
+		<xs:sequence>
+			<xs:element name="messages" nillable="true" type="tns:MessagesType" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="MessagesType">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="message"
+				nillable="true" type="tns:MessageType" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="MessageType">
+		<xs:sequence>
+			<xs:element name="code" type="xs:string" />
+			<xs:element minOccurs="0" name="text" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:element name="serviceFault" type="tns:serviceFault" />
+
+	<xs:element name="requestHeader" type="tns:requestHeaderType" />
+
+	<xs:complexType name="requestHeaderType">
+		<xs:sequence>
+			<xs:element name="timestamp" type="xs:dateTime" />
+			<xs:element name="sourceSystemId" type="xs:token" />
+			<xs:element minOccurs="0" name="sourceSystemUserId" type="xs:token" />
+			<xs:element name="sourceServerId" type="xs:token" />
+			<xs:element name="trackingId" type="xs:token" />
+			<xs:element minOccurs="0" name="sessionId" type="xs:token" />
+			<xs:element minOccurs="0" name="environmentId" type="xs:token" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:element name="responseHeader" type="tns:responseHeaderType" />
+
+	<xs:complexType name="responseHeaderType">
+		<xs:sequence>
+			<xs:element name="timestamp" type="xs:dateTime" />
+			<xs:element name="trackingId" type="xs:token" />
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>
