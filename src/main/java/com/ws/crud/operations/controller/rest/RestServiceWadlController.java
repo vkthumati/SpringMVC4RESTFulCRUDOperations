@@ -35,7 +35,7 @@ import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 @RestController
-@RequestMapping("/api/application.wadl")
+@RequestMapping("/wadl/application.wadl")
 public class RestServiceWadlController {
 
 	String xs_namespace = "http://www.w3.org/2001/XMLSchema";
