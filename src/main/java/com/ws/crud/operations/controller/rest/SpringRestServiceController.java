@@ -2,6 +2,8 @@ package com.ws.crud.operations.controller.rest;
 
 import java.util.List;
 
+import javax.ws.rs.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpHeaders;
@@ -61,7 +63,7 @@ public class SpringRestServiceController {
 
 	@Autowired
     UserService userService; 
-    
+
 	@Lazy(false)
 	@ApiOperation(nickname = "listAllUsers", value = "List All Users", notes = "This Api retrieves all users.", response = User.class)
 	@ApiResponses(value = {
@@ -78,6 +80,7 @@ public class SpringRestServiceController {
     
     @RequestMapping(value="/getUserById/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> getUserByIdPathVariable(@PathVariable(required=true, name="id") long id){
+    	
     	User user = userService.findById(id);
     	ResponseEntity<User> response = null;
     	if(user==null){
